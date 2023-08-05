@@ -90,6 +90,4 @@ function add_decimal (a, b) {
   return { decimal: result.map(e => e.toString()).join(''), integer }
 }
 
-module.exports = {
-  add
-}
+module.exports = add
