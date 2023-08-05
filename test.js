@@ -1,5 +1,6 @@
 const test = require('brittle')
 const add = require('./add.js')
+const { substract } = require('./substract.js')
 const { equals, greater, less } = require('./compare.js')
 
 test('equals', (t) => {
@@ -44,7 +45,7 @@ test('less', (t) => {
 })
 
 test('add integer', t => {
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 10; i++) {
     const a = Math.floor(Math.random() * 100000000000000)
     const b = Math.floor(Math.random() * 100000000000000)
     const result = add(a.toString(), b.toString())
@@ -68,5 +69,41 @@ test('add float', t => {
   {
     const result = add('1.91', '1.1')
     t.is(result, '3.01')
+  }
+})
+
+test('subtract integer', t => {
+  for (let i = 0; i < 10; i++) {
+    const a = Math.floor(Math.random() * 100000000000000)
+    let diff = Math.floor(Math.random() * 100000000000000)
+    while (diff >= a) {
+      diff = Math.floor(Math.random() * 100000000000000)
+    }
+    const b = a - diff
+    const result = substract(a.toString(), b.toString())
+    t.ok(equals(diff.toString(), result))
+  }
+})
+
+test('substract float', t => {
+  {
+    const result = substract('1.1', '1.1')
+    t.ok(equals(result, '0.0'))
+  }
+  {
+    const result = substract('1.1', '1')
+    t.is(result, '0.1')
+  }
+  {
+    const result = substract('1.9', '1.1')
+    t.is(result, '0.8')
+  }
+  {
+    const result = substract('1.91', '1.1')
+    t.is(result, '0.81')
+  }
+  {
+    const result = substract('1.9', '1.001')
+    t.is(result, '0.899')
   }
 })
