@@ -1,6 +1,7 @@
 const test = require('brittle')
 const add = require('./add.js')
 const { substract } = require('./substract.js')
+const { multiply } = require('./multiply.js')
 const { equals, greater, less } = require('./compare.js')
 
 test('equals', (t) => {
@@ -54,6 +55,13 @@ test('add integer', t => {
     const result = add(a.toString(), b.toString())
     t.is((a + b).toString(), result)
   }
+})
+
+test.solo('add integer', t => {
+  const a = "1932"
+  const b = "92"
+  const result = add(a, b)
+  t.is((parseInt(a) + parseInt(b)).toString(), result)
 })
 
 test('add float', t => {
@@ -112,17 +120,27 @@ test('substract float', t => {
 })
 
 test('fibbonacci', (t) => {
-  let a = "1"
-  let b = "1"
+  let a = '1'
+  let b = '1'
 
   const result = []
 
-  while(less(a, "200")) {
+  while (less(a, '200')) {
     const next = add(a, b)
     b = a
     a = next
     result.push(next)
   }
 
-  t.alike(result, ["2", "3", "5", "8", "13", "21", "34", "55", "89", "144", "233"])
+  t.alike(result, ['2', '3', '5', '8', '13', '21', '34', '55', '89', '144', '233'])
 })
+
+test('multiply', (t) => {
+  for (let i = 0; i < 10; i++) {
+    const a = Math.floor(Math.random() * 1000)
+    const b = Math.floor(Math.random() * 1000)
+    const result = multiply(a.toString(), b.toString())
+    t.is((a * b).toString(), result)
+  }
+})
+
