@@ -10,8 +10,13 @@ function add (a_, b_) {
   a_ = a_.split('').map(e => parseInt(e))
   b_ = b_.split('').map(e => parseInt(e))
 
-  const a = a_.length >= b_.length ? a_ : b_
-  const b = a_.length >= b_.length ? b_ : a_
+  while (b_.length < a_.length) {
+    b_.unshift(0)
+  }
+
+  while (a_.length < b_.length) {
+    a_.unshift(0)
+  }
 
   let decimal
   if (c_ || d_) {
@@ -20,15 +25,19 @@ function add (a_, b_) {
     c_ = c_.split('').map(e => parseInt(e))
     d_ = d_.split('').map(e => parseInt(e))
 
-    const c = c_.length >= d_.length ? c_ : d_
-    const d = c_.length >= d_.length ? d_ : c_
+    while (d.length < c.length) {
+      d.push(0)
+    }
 
-    decimal = add_decimal(c, d)
+    while (c.length < d.length) {
+      c.push(0)
+    }
 
-    return add(add_int(a, b), decimal.integer) + '.' + decimal.decimal
+    decimal = add_decimal(c_, d_)
+    return add(add_int(a_, b_), decimal.integer) + '.' + decimal.decimal
   }
 
-  return add_int(a, b)
+  return add_int(a_, b_)
 }
 
 function add_int (a, b) {
@@ -47,11 +56,13 @@ function add_int (a, b) {
         result.unshift(addition)
         takeover = 0
       } else {
-        result.unshift(addition % 10)
-        takeover = 1
+        if (i === a.length - 1) {
+          result.unshift(addition)
+        } else {
+          result.unshift(addition % 10)
+          takeover = 1
+        }
       }
-
-      if (i === a.length - 1 && takeover) result.unshift(1)
     }
   }
 
