@@ -12,19 +12,16 @@ function equals (a_, b_) {
   a_ = a_.split('').map(e => parseInt(e))
   b_ = b_.split('').map(e => parseInt(e))
 
-  const a = a_.length >= b_.length ? a_ : b_
-  const b = a_.length >= b_.length ? b_ : a_
-
-  while (b.length < a.length) {
-    b.unshift(0)
+  while (b_.length < a_.length) {
+    b_.unshift(0)
   }
 
-  while (a.length < b.length) {
-    a.unshift(0)
+  while (a_.length < b_.length) {
+    a_.unshift(0)
   }
 
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] !== b[i]) return false
+  for (let i = 0; i < a_.length; i++) {
+    if (a_[i] !== b_[i]) return false
   }
 
   if (!c_ && !d_) {
