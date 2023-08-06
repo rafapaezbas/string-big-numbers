@@ -2,6 +2,7 @@ const test = require('brittle')
 const add = require('./add.js')
 const { substract } = require('./substract.js')
 const { multiply } = require('./multiply.js')
+const { divide } = require('./divide.js')
 const { equals, greater, less } = require('./compare.js')
 
 test('equals', (t) => {
@@ -137,3 +138,41 @@ test('multiply', (t) => {
   }
 })
 
+test('divide', (t) => {
+  {
+    const a = '450'
+    const b = '90'
+    const result = divide(a, b)
+    t.ok(equals(result, '5'))
+  }
+  {
+    const a = '90'
+    const b = '90'
+    const result = divide(a, b)
+    t.ok(equals(result, '1'))
+  }
+  {
+    const a = '0'
+    const b = '90'
+    const result = divide(a, b)
+    t.ok(equals(result, '0'))
+  }
+  {
+    const a = '990'
+    const b = '90'
+    const result = divide(a, b)
+    t.ok(equals(result, '11'))
+  }
+})
+
+test('subtract integer', t => {
+  for (let i = 0; i < 10; i++) {
+    const a = Math.floor(Math.random() * 1000000)
+    let b = Math.floor(Math.random() * 10000)
+    while (b > a || b === 0) {
+      b = Math.floor(Math.random() * 10000)
+    }
+    const result = divide(a.toString(), b.toString())
+    t.ok(equals(Math.floor((a / b)).toString(), result))
+  }
+})

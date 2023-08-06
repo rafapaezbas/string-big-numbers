@@ -4,7 +4,7 @@ const add = require('./add.js')
 function multiply (a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') throw Error('Invalid format')
 
-  if (equals(a, "0") || equals(b, "0")) return "0"
+  if (equals(a, '0') || equals(b, '0')) return '0'
 
   let counter = '1'
   let result = a
