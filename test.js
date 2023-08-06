@@ -30,7 +30,10 @@ test('greater', (t) => {
   t.is(greater('10', '1'), true)
   t.is(greater('1.1', '1'), true)
   t.is(greater('1.11', '1.10'), true)
+  t.is(greater('1.10', '1.11'), false)
   t.is(greater('1.2', '1.10'), true)
+  t.is(greater('2', '110'), false)
+  t.is(greater('110', '2'), true)
 })
 
 test('less', (t) => {
@@ -106,4 +109,20 @@ test('substract float', t => {
     const result = substract('1.9', '1.001')
     t.is(result, '0.899')
   }
+})
+
+test('fibbonacci', (t) => {
+  let a = "1"
+  let b = "1"
+
+  const result = []
+
+  while(less(a, "200")) {
+    const next = add(a, b)
+    b = a
+    a = next
+    result.push(next)
+  }
+
+  t.alike(result, ["2", "3", "5", "8", "13", "21", "34", "55", "89", "144", "233"])
 })

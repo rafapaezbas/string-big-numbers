@@ -19,6 +19,10 @@ function equals (a_, b_) {
     b.unshift(0)
   }
 
+  while (a.length < b.length) {
+    a.unshift(0)
+  }
+
   for (let i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) return false
   }
@@ -35,6 +39,10 @@ function equals (a_, b_) {
 
     while (d.length < c.length) {
       d.push(0)
+    }
+
+    while (c.length < d.length) {
+      c.push(0)
     }
 
     for (let i = 0; i < c.length; i++) {
@@ -57,16 +65,17 @@ function greater (a_, b_) {
   a_ = a_.split('').map(e => parseInt(e))
   b_ = b_.split('').map(e => parseInt(e))
 
-  const a = a_.length >= b_.length ? a_ : b_
-  const b = a_.length >= b_.length ? b_ : a_
-
-  while (b.length < a.length) {
-    b.unshift(0)
+  while (b_.length < a_.length) {
+    b_.unshift(0)
   }
 
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] > b[i]) return true
-    if (a[i] < b[i]) return false
+  while (a_.length < b_.length) {
+    a_.unshift(0)
+  }
+
+  for (let i = 0; i < a_.length; i++) {
+    if (a_[i] > b_[i]) return true
+    if (a_[i] < b_[i]) return false
   }
 
   if (!c_ && !d_) {
@@ -78,14 +87,11 @@ function greater (a_, b_) {
     c_ = c_.split('').map(e => parseInt(e))
     d_ = d_.split('').map(e => parseInt(e))
 
-    if (c_.length > d_.length) {
-      while (d_.length < c_.length) {
-        d_.push(0)
-      }
-    } else {
-      while (c_.length < d_.length) {
-        c_.push(0)
-      }
+    while (d_.length < c_.length) {
+      d_.push(0)
+    }
+    while (c_.length < d_.length) {
+      c_.push(0)
     }
 
     for (let i = 0; i < c_.length; i++) {
