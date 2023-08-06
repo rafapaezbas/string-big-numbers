@@ -25,12 +25,12 @@ function add (a_, b_) {
     c_ = c_.split('').map(e => parseInt(e))
     d_ = d_.split('').map(e => parseInt(e))
 
-    while (d.length < c.length) {
-      d.push(0)
+    while (d_.length < c_.length) {
+      d_.push(0)
     }
 
-    while (c.length < d.length) {
-      c.push(0)
+    while (c_.length < d_.length) {
+      c_.push(0)
     }
 
     decimal = add_decimal(c_, d_)
