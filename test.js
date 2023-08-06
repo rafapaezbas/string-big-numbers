@@ -57,13 +57,6 @@ test('add integer', t => {
   }
 })
 
-test.solo('add integer', t => {
-  const a = "1932"
-  const b = "92"
-  const result = add(a, b)
-  t.is((parseInt(a) + parseInt(b)).toString(), result)
-})
-
 test('add float', t => {
   {
     const result = add('1.1', '1.1')
