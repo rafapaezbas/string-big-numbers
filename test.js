@@ -165,14 +165,38 @@ test('divide', (t) => {
   }
 })
 
-test('subtract integer', t => {
+test('divide integer', t => {
   for (let i = 0; i < 10; i++) {
     const a = Math.floor(Math.random() * 1000000)
     let b = Math.floor(Math.random() * 10000)
     while (b > a || b === 0) {
       b = Math.floor(Math.random() * 10000)
     }
-    const result = divide(a.toString(), b.toString())
+    const result = divide(a.toString(), b.toString(), 0) // 0 decimals
     t.ok(equals(Math.floor((a / b)).toString(), result))
+  }
+})
+
+test.skip('phi aproximation', async (t) => {
+  console.log(' ')
+  let a = '1'
+  let b = '1'
+
+  const format = (e) => {
+    let n = 0
+    for (let i = 0; i < e.length; i++) {
+      if (e[i] !== '0') break
+      n = i + 1
+    }
+    return e.substr(n)
+  }
+
+  let i = 0
+  while (true) {
+    console.log(a + '/' + b + ' = ' + format(divide(a, b, ++i)))
+    const next = add(a, b)
+    b = a
+    a = next
+    await new Promise((resolve) => setTimeout(resolve, 500))
   }
 })

@@ -1,4 +1,4 @@
-const { greater, equals } = require('./compare.js')
+const { equals } = require('./compare.js')
 
 function substract (a_, b_) {
   if (typeof a_ !== 'string' || typeof b_ !== 'string') throw Error('Invalid format')
